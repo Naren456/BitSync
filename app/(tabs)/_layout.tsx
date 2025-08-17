@@ -7,7 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 const Layout = () => {
   const scheme = useColorScheme();
   const isDark = scheme === 'dark';
-
+   
   return (
     <SafeAreaProvider>
       <Tabs

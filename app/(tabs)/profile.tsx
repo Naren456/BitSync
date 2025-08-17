@@ -1,21 +1,33 @@
 import React from "react";
-import { View, Text, ActivityIndicator, useColorScheme } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  useColorScheme,
+  TouchableOpacity,
+} from "react-native";
 import { useUser } from "../../contexts/UserContext";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 export default function ProfileScreen() {
-  const { user, userData, loading } = useUser();
-  const colorScheme = useColorScheme(); // Detect system theme (light/dark)
+  const { userData, loading, signOut } = useUser();
+  const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
+  const router = useRouter();
 
-  if (loading) return <ActivityIndicator size="large" color={isDark ? "#fff" : "#000"} className="flex-1" />;
-
-  if (!user)
+  if (loading) {
     return (
-      <Text className="text-center text-red-500 mt-10 text-lg">
-        ⚠️ Please log in
-      </Text>
+      <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color={isDark ? "#fff" : "#000"} />
+      </View>
     );
+  }
+
+  const handleLogout = async () => {
+    await signOut();
+    router.replace("/landing");
+  };
 
   return (
     <SafeAreaView className={`flex-1 p-5 ${isDark ? "bg-gray-900" : "bg-gray-100"}`}>
@@ -62,6 +74,15 @@ export default function ProfileScreen() {
           {userData?.cohort}
         </Text>
       </View>
+
+      {/* 🔒 Logout Button */}
+      <TouchableOpacity
+        onPress={handleLogout}
+        className="mt-10 bg-red-600 py-4 rounded-2xl"
+        activeOpacity={0.85}
+      >
+        <Text className="text-white text-center font-semibold text-lg">Sign Out</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

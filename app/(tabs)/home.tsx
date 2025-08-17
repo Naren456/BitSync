@@ -11,14 +11,24 @@ import { ChevronDown, ChevronRight, BookOpen, Loader2 } from "lucide-react-nativ
 import AssignmentCard from "@/components/AssignmentCard";
 import { parseICS, Assignment } from "@/utils/icsParser";
 import { useUser } from "../../contexts/UserContext"; // ✅ get cohort from context
-
+import { useRouter } from "expo-router";
 
 type GroupedAssignments = Record<string, Assignment[]>;
 
 export default function Home() {
-  const { userData } = useUser();
+
   const [assignments, setAssignments] = useState<Assignment[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [Loading,setLoading] = useState(false)
+  const { userData, isLoggedIn, loading } = useUser();
+  const router = useRouter();
+
+  // 🚫 Redirect if not logged in
+  useEffect(() => {
+    if (!loading && !isLoggedIn) {
+      router.replace("/landing");
+    }
+  }, [loading, isLoggedIn]);
+
 
   useEffect(() => {
     const loadICS = async () => {
@@ -80,7 +90,7 @@ export default function Home() {
         Deadlines
       </Text>
 
-      {loading ? (
+      {Loading ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#2563EB" />
           <Text className="mt-3 text-gray-500 dark:text-gray-400 text-base">
