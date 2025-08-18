@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "PortSync",
+    "name": "BitSync",
     "slug": "bitsync",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "portsync",
+    "scheme": "bitsync",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -18,7 +18,7 @@
         "backgroundColor": "#6366f1"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.Port.PortSync"
+      "package": "com.narendra78.bitSync"
     },
     "web": {
       "bundler": "metro",
