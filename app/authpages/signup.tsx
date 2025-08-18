@@ -14,7 +14,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { LinearGradient } from "expo-linear-gradient";
 import { useUser } from "../../contexts/UserContext"; // ✅ Import context
-
+import { useColorScheme } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
 const terms = [1, 2];
 const cohorts = [4, 6];
@@ -22,7 +23,12 @@ const cohorts = [4, 6];
 const SignUp = () => {
   const router = useRouter();
   const { signUp } = useUser(); // ✅ use signUp from context
-
+   const scheme = useColorScheme()
+   const isDark = scheme=="dark"
+     const bgClass = isDark ? "bg-neutral-900" : "bg-gray-50";
+     const textClass = isDark ? "text-gray-100" : "text-gray-900";
+     const subtitleClass = isDark ? "text-gray-400" : "text-gray-600";
+   
   const [semester, setSemester] = useState<number | null>(null);
   const [term, setTerm] = useState<number | null>(null);
   const [cohort, setCohort] = useState<number | null>(null);
@@ -115,7 +121,7 @@ const SignUp = () => {
   );
 
   return (
-    <ScrollView className="flex-1 bg-gray-50 dark:bg-gray-900 px-6 pt-12">
+     <SafeAreaView className="flex-1 bg-gray-50 dark:bg-gray-900 px-6 pt-12">
       {/* Title */}
       <Text className="text-4xl font-extrabold text-gray-900 dark:text-white mb-10 text-center">
         Create Account
@@ -139,7 +145,7 @@ const SignUp = () => {
             {["Name", "Email", "Password"].map((field, idx) => (
               <View key={idx} className="mb-4">
                 <TextInput
-                  className="border border-gray-300 dark:border-gray-700 rounded-full px-5 py-4 bg-white dark:bg-gray-800 shadow-md text-gray-900 dark:text-white text-base"
+                  className="border border-gray-300 dark:border-gray-700 rounded-2xl px-5 py-4 bg-white dark:bg-gray-800 shadow-md text-gray-900 dark:text-white text-base"
                   placeholder={field}
                   placeholderTextColor="#9CA3AF"
                   secureTextEntry={field === "Password"}
@@ -167,17 +173,20 @@ const SignUp = () => {
             <TouchableOpacity
               onPress={handleSubmit as any}
               activeOpacity={0.85}
-              className="mt-6 rounded-2xl shadow-lg"
-            >
+            className="w-full mt-8 rounded-2xl overflow-hidden mb-4 shadow-lg"
+            > 
+              
               <LinearGradient
-                colors={["#2563EB", "#9333EA"]}
+                  colors={["#6366F1", "#8B5CF6"]} 
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
-                className="rounded-2xl py-4 px-6 flex items-center justify-center"
+                className=" py-4  flex items-center justify-center"
               >
-                <Text className="text-white font-bold text-lg tracking-wide">Sign Up</Text>
+                <Text className="text-white font-bold text-lg ">Sign Up</Text>
               </LinearGradient>
             </TouchableOpacity>
+
+           
           </>
         )}
       </Formik>
@@ -189,7 +198,8 @@ const SignUp = () => {
           <Text className="text-blue-600 dark:text-blue-400 font-semibold">Login</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+   
+   </SafeAreaView>
   );
 };
 

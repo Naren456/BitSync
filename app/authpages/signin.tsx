@@ -7,9 +7,14 @@ import supabase from "../../supabase/config";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
-
+import { useColorScheme } from "react-native";
 const SignIn = () => {
   const router = useRouter();
+const scheme = useColorScheme()
+const isDark = scheme=="dark"
+  const bgClass = isDark ? "bg-neutral-900" : "bg-gray-50";
+  const textClass = isDark ? "text-gray-100" : "text-gray-900";
+  const subtitleClass = isDark ? "text-gray-400" : "text-gray-600";
 
   const SignInSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -35,12 +40,12 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50 dark:bg-gray-900 px-6">
-      <StatusBar style="auto" />
-      <View className="flex-1 justify-center items-center">
-        <Text className="text-4xl font-extrabold text-gray-900 dark:text-white mb-10">
-          Welcome Back 👋
-        </Text>
+    <SafeAreaView className={`flex-1 dark:bg-gray-900 bg-gray-50 px-6`}>
+     <StatusBar style={isDark ? "light" : "dark"} backgroundColor={isDark ? "#171717" :"#F9FAFB"}/>
+       <View className="flex-1 justify-center items-center px-6">
+              {/* App Branding */}
+              <Text className={`text-5xl font-lucide ${textClass} mb-10`}>PortSync</Text>
+        
 
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -81,7 +86,7 @@ const SignIn = () => {
               {/* Gradient Sign In Button */}
               <TouchableOpacity onPress={handleSubmit as any} className="mt-6 rounded-2xl overflow-hidden shadow-lg">
                 <LinearGradient
-                  colors={["#6366F1", "#4F46E5"]}
+                  colors={["#6366F1", "#8B5CF6"]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   className="py-4"

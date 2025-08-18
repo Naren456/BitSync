@@ -16,12 +16,12 @@ const LandingScreen = () => {
   const subtitleClass = isDark ? "text-gray-400" : "text-gray-600";
 
   return (
-    <SafeAreaView className={`flex-1 ${bgClass}`}>
+    <SafeAreaView className={`flex-1 dark:bg-gray-900 bg-white-50`}>
       <StatusBar style={isDark ? "light" : "dark"} backgroundColor={isDark ? "#171717" : "#F9FAFB"} />
 
       <View className="flex-1 justify-center items-center px-6">
         {/* App Branding */}
-        <Text className={`text-5xl font-extrabold ${textClass} mb-2`}>BitSync</Text>
+        <Text className={`text-5xl font-lucide ${textClass} mb-2`}>PortSync</Text>
         <Text className={`text-lg text-center mb-10 ${subtitleClass}`}>
           Your College Assistant, Reimagined 🚀
         </Text>

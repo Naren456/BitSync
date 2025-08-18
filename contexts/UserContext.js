@@ -109,7 +109,7 @@ export const UserProvider = ({ children }) => {
         loading,
         isLoggedIn,
         signOut,
-        signUp, // ✅ exposed sign up function
+        signUp, 
       }}
     >
       {children}

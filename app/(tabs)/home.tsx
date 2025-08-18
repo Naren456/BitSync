@@ -85,7 +85,7 @@ export default function Home() {
   const { upcoming, overdue, previous } = classifyAssignments(assignments);
 
   return (
-    <View className="flex-1 bg-gray-50 dark:bg-black px-4 pt-10">
+    <View className="flex-1  bg-gray-50 dark:bg-gray-900 px-4 pt-10">
       <Text className="text-3xl font-extrabold mb-6 text-gray-900 dark:text-white">
         Deadlines
       </Text>

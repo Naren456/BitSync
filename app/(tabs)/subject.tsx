@@ -52,7 +52,7 @@ const SubjectsList = () => {
 
   if (loading) {
     return (
-      <View className={`flex-1 justify-center items-center ${bg}`}>
+      <View className={`flex-1  bg-gray-50 dark:bg-gray-900 justify-center items-center ${bg}`}>
         <ActivityIndicator size="large" color={isDark ? "white" : "black"} />
         <Text className={`${mutedText} mt-2`}>Loading courses...</Text>
       </View>
@@ -60,7 +60,7 @@ const SubjectsList = () => {
   }
 
   return (
-    <ScrollView className={`flex-1 px-5 py-10 ${bg}`}>
+    <ScrollView className={`flex-1 px-5 py-10  bg-gray-50 dark:bg-gray-900`}>
       <Text className={`text-3xl font-bold mb-6 ${mainText}`}>
         📚 Subjects
       </Text>

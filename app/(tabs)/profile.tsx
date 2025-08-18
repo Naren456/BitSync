@@ -30,7 +30,7 @@ export default function ProfileScreen() {
   };
 
   return (
-    <SafeAreaView className={`flex-1 p-5 ${isDark ? "bg-gray-900" : "bg-gray-100"}`}>
+    <SafeAreaView className={`flex-1 p-5  bg-gray-50 dark:bg-gray-900`}>
       <Text className={`text-2xl font-bold text-center mb-6 ${isDark ? "text-gray-100" : "text-gray-800"}`}>
         My Profile
       </Text>
